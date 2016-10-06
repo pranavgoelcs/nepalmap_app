@@ -1,1 +1,1 @@
-web: gunicorn wazimap_np.app --log-file -
+web: gunicorn wazimap_np.wsgi --log-file -
