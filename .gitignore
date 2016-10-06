@@ -5,3 +5,7 @@ node_modules/
 debug
 .vagrant
 /static/
+venv
+*.pyc
+staticfiles
+.env
