@@ -6,7 +6,7 @@ from wazimap.data.utils import get_session, calculate_median, merge_dicts, get_s
 
 
 # ensure tables are loaded
-import wazimap_np.tables  # noqa
+import dejr633uvvi13b.tables  # noqa
 
 
 PROFILE_SECTIONS = (
@@ -75,7 +75,7 @@ def get_census_profile(geo_code, geo_level, profile_name=None):
                 # get profiles for province and/or country
                 for level, code in geo_summary_levels:
                     # merge summary profile into current geo profile
-                    merge_dicts(data[section], func(code, level, session), 
+                    merge_dicts(data[section], func(code, level, session),
                                 level)
 
         return data

@@ -22,7 +22,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: maintypeofcookingfuel; Type: TABLE; Schema: public; Owner: wazimap_np; Tablespace:
+-- Name: maintypeofcookingfuel; Type: TABLE; Schema: public; Owner: onmixbvffrszxu; Tablespace:
 --
 
 CREATE TABLE maintypeofcookingfuel (
@@ -33,10 +33,10 @@ CREATE TABLE maintypeofcookingfuel (
 );
 
 
-ALTER TABLE maintypeofcookingfuel OWNER TO wazimap_np;
+ALTER TABLE maintypeofcookingfuel OWNER TO onmixbvffrszxu;
 
 --
--- Data for Name: maintypeofcookingfuel; Type: TABLE DATA; Schema: public; Owner: wazimap_np
+-- Data for Name: maintypeofcookingfuel; Type: TABLE DATA; Schema: public; Owner: onmixbvffrszxu
 --
 
 COPY maintypeofcookingfuel (geo_code, geo_level, "main type of cooking fuel" ,total) FROM stdin WITH DELIMITER ',';
@@ -652,7 +652,7 @@ NP,country,NOT_STATED,34973
 
 
 --
--- Name: maintypeofcookingfuel_pkey; Type: CONSTRAINT; Schema: public; Owner: wazimap_np; Tablespace:
+-- Name: maintypeofcookingfuel_pkey; Type: CONSTRAINT; Schema: public; Owner: onmixbvffrszxu; Tablespace:
 --
 
 ALTER TABLE ONLY maintypeofcookingfuel
