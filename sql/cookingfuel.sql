@@ -22,7 +22,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: maintypeofcookingfuel; Type: TABLE; Schema: public; Owner: wazimap_np; Tablespace: 
+-- Name: maintypeofcookingfuel; Type: TABLE; Schema: public; Owner: wazimap_np; Tablespace:
 --
 
 CREATE TABLE maintypeofcookingfuel (
@@ -652,7 +652,7 @@ NP,country,NOT_STATED,34973
 
 
 --
--- Name: maintypeofcookingfuel_pkey; Type: CONSTRAINT; Schema: public; Owner: wazimap_np; Tablespace: 
+-- Name: maintypeofcookingfuel_pkey; Type: CONSTRAINT; Schema: public; Owner: wazimap_np; Tablespace:
 --
 
 ALTER TABLE ONLY maintypeofcookingfuel

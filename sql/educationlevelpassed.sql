@@ -20,7 +20,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: educationlevelpassed_sex; Type: TABLE; Schema: public; Owner: wazimap_np; Tablespace: 
+-- Name: educationlevelpassed_sex; Type: TABLE; Schema: public; Owner: wazimap_np; Tablespace:
 --
 
 CREATE TABLE educationlevelpassed_sex (
@@ -1715,7 +1715,7 @@ NP,country,SLC_AND_EQUIVALENT,male,932391
 
 
 --
--- Name: educationlevelpassed_sex_pkey; Type: CONSTRAINT; Schema: public; Owner: wazimap_np; Tablespace: 
+-- Name: educationlevelpassed_sex_pkey; Type: CONSTRAINT; Schema: public; Owner: wazimap_np; Tablespace:
 --
 
 ALTER TABLE ONLY educationlevelpassed_sex

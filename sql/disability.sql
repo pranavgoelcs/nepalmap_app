@@ -19,7 +19,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: disability_sex; Type: TABLE; Schema: public; Owner: wazimap_np; Tablespace: 
+-- Name: disability_sex; Type: TABLE; Schema: public; Owner: wazimap_np; Tablespace:
 --
 
 CREATE TABLE disability_sex (
@@ -1410,7 +1410,7 @@ NP,country,SPEECH_PROBLEM,male,33190
 
 
 --
--- Name: disability_sex_pkey; Type: CONSTRAINT; Schema: public; Owner: wazimap_np; Tablespace: 
+-- Name: disability_sex_pkey; Type: CONSTRAINT; Schema: public; Owner: wazimap_np; Tablespace:
 --
 
 ALTER TABLE ONLY disability_sex
