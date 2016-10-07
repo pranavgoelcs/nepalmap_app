@@ -1,6 +1,14 @@
 # pull in the default wazimap settings
 from wazimap.settings import *  # noqa
 
+PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
+
+STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_PATH, 'static'),
+)
+
 # install this app before Wazimap
 INSTALLED_APPS = ['wazimap_np'] + INSTALLED_APPS
 
