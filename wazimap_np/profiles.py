@@ -26,6 +26,17 @@ COOKING_FUEL_RECODES = OrderedDict([
     ('NOT_STATED', 'Not Stated')
 ])
 
+DISABILITY_RECODES = OrderedDict([
+    ('PHYSICAL', 'Physical'),
+    ('BLINDNESS_LOW_VISION', 'Blind/Low Vision'),
+    ('DEAF_HEARING', 'Deaf'),
+    ('SPEECH_PROBLEM', 'Speech'),
+    ('MULTIPLE_DISABILITY', 'Multiple Disabilities'),
+    ('MENTAL_DISABILITY', 'Mental Disability'),
+    ('INTELLECTUAL_DISABILITY', 'Intellectual'),
+    ('DEAF_BLIND', 'Deaf and Blind')
+])
+
 EDUCATION_LEVEL_PASSED_RECODES = OrderedDict([
     ('PRIMARY_1_5', 'Primary'),
     ('LOWER_SECONDARY_6_8', 'Lower Secondary'),
@@ -40,9 +51,11 @@ EDUCATION_LEVEL_PASSED_RECODES = OrderedDict([
     ('OTHERS', 'Others')
 ])
 
-GENDER_RECODES = OrderedDict([
-    ('female', 'Female'),
-    ('male', 'Male')
+LITERACY_RECODES = OrderedDict([
+    ('CAN_READ_WRITE', 'Can read and write'),
+    ('CANT_READ_WRITE', 'Not literate'),
+    ('CAN_READ_ONLY', 'Can read'),
+    ('NOT_STATED', 'Not stated')
 ])
 
 
@@ -78,11 +91,25 @@ def get_demographics_profile(geo_code, geo_level, session):
         'sex', geo_level, geo_code, session,
         table_fields=['disability', 'sex'])
 
+    # population by disability
+    disability_dist_data, total_disabled = get_stat_data(
+        'disability', geo_level, geo_code, session,
+        table_fields=['disability', 'sex'],
+        recode=dict(DISABILITY_RECODES),
+        key_order=DISABILITY_RECODES.values(),
+        exclude=['NO_DISABILITY'])
+
     final_data = {
         'sex_ratio': sex_dist_data,
+        'disability_ratio': disability_dist_data,
         'total_population': {
             "name": "People",
             "values": {"this": total_pop}
+        },
+        'total_disabled': {
+            'name': 'People',
+            'values':
+                {'this': total_disabled},
         }
     }
 
@@ -113,7 +140,6 @@ def get_households_profile(geo_code, geo_level, session):
 
 
 def get_education_profile(geo_code, geo_level, session):
-
     edu_level_reached, pop_five_and_older = get_stat_data(
         'education level passed', geo_level, geo_code, session,
         recode=dict(EDUCATION_LEVEL_PASSED_RECODES),
@@ -127,16 +153,11 @@ def get_education_profile(geo_code, geo_level, session):
     all_edu_level_by_sex, _ = get_stat_data(
         ['education level passed', 'sex'], geo_level, geo_code, session,
         recode={
-            'education level passed': dict(EDUCATION_LEVEL_PASSED_RECODES),
-            'sex': dict(GENDER_RECODES)},
+            'education level passed': dict(EDUCATION_LEVEL_PASSED_RECODES)},
         key_order={
             'education level passed': EDUCATION_LEVEL_PASSED_RECODES.values(),
-            'sex': GENDER_RECODES.values()},
-        exclude={'education level passed': ['INTERMEDIATE', 'BEGINNER',
-                                            'NON_FORMAL', 'GRADUATE',
-                                            'POST_GRADUATE_AND_ABOVE',
-                                            'NOT_STATED',
-                                            'OTHERS']})
+            'sex': ['Female', 'Male']},
+        percent_grouping=['sex'])
 
     edu_level_by_sex = {
         'Primary': all_edu_level_by_sex['Primary'],
@@ -150,6 +171,20 @@ def get_education_profile(geo_code, geo_level, session):
     for data in edu_level_by_sex['Secondary'].itervalues():
         if 'numerators' in data:
             total_secondary_by_sex += data['numerators']['this']
+
+    literacy_by_sex, t_lit = get_stat_data(
+        ['literacy', 'sex'], geo_level, geo_code, session,
+        recode={'literacy': dict(LITERACY_RECODES)},
+        key_order={
+            'literacy': LITERACY_RECODES.values(),
+            'sex': ['Female', 'Male']},
+        percent_grouping=['sex'])
+
+    literacy_dist, _ = get_stat_data(
+        'literacy', geo_level, geo_code, session,
+        recode=dict(LITERACY_RECODES),
+        key_order=LITERACY_RECODES.values())
+
     return {
         'aged_five_and_over': {
             'name': 'People Aged 5 and Over',
@@ -170,5 +205,7 @@ def get_education_profile(geo_code, geo_level, session):
                 'this': round(
                     total_secondary_by_sex / pop_five_and_older * 100,
                     2)}
-        }
+        },
+        'literacy_by_sex_distribution': literacy_by_sex,
+        'literacy_distribution': literacy_dist
     }
