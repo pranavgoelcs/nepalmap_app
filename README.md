@@ -2,7 +2,7 @@
 
 The Nepal instance of [Wazimap](https://github.com/Code4SA/wazimap), a Django application for exploring census and other similar data.
 
-# Local development
+## Local development
 
 1. clone the repo
 2. ``cd nepalmap``
@@ -34,6 +34,6 @@ python manage.py runserver
 ```
 
 
-# License
+## License
 
-NepalMap code is licensed under the MIT License.
+NepalMap code is licensed under the [MIT License](https://opensource.org/licenses/MIT).
